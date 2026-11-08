@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    background-color: #050408;
+    color: #fce7b0;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+/* Custom festive styles & animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(255, 170, 0, 0.95)) drop-shadow(0 0 35px rgba(255, 110, 0, 0.7));
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 11px rgba(255, 150, 0, 0.8)) drop-shadow(0 0 25px rgba(255, 90, 0, 0.5));
+    transform: scale(0.97) skewX(-1deg);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 190, 0, 1)) drop-shadow(0 0 45px rgba(255, 120, 0, 0.85));
+    transform: scale(1.04) skewX(1deg);
+  }
+  75% {
+    opacity: 0.92;
+    filter: drop-shadow(0 0 13px rgba(255, 160, 0, 0.85)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.6));
+    transform: scale(0.98);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes goldShine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(255, 191, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(255, 170, 0, 0.8), inset 0 0 25px rgba(255, 215, 0, 0.4);
+  }
+}
+
+.animate-flicker {
+  animation: flicker 1.8s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF6D1 0%, #FFD700 35%, #F59E0B 70%, #FFF4B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #F59E0B 0%, #FFFBEB 25%, #FFD700 50%, #FFFBEB 75%, #F59E0B 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShine 6s linear infinite;
+}
+
+.gold-border {
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.15);
+}
+
+.gold-glow {
+  box-shadow: 0 0 35px rgba(255, 180, 0, 0.35);
+}
+
+.cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.hindi-title {
+  font-family: 'Rozha One', 'Yatra One', 'Tiro Devanagari Hindi', serif;
+}
+
+.cursive {
+  font-family: 'Great Vibes', cursive;
+}
