@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { festiveAudio } from '../utils/audio';
+import { soundManager } from '../utils/audio';
 
 export default function FireworksCanvas({ triggerBurstRef }) {
   const canvasRef = useRef(null);
@@ -18,16 +18,16 @@ export default function FireworksCanvas({ triggerBurstRef }) {
     };
     window.addEventListener('resize', handleResize);
 
+    // Premium Champagne, Golden Bronze, Platinum, Rose Amber Palette (Cohesive & Sophisticated)
     const colors = [
-      '#FFD700', // Gold
-      '#FFA500', // Saffron / Orange
-      '#FF3366', // Rose Pink
-      '#FF4500', // Deep Orange
-      '#00FFCC', // Cyan
-      '#FFE066', // Light Gold
-      '#FF9900', // Bright Amber
-      '#FF69B4', // Hot Pink
-      '#E6C200', // Antique Gold
+      '#F3E5C8', // Soft Champagne
+      '#D4AF37', // Imperial Gold
+      '#E6C280', // Warm Gold
+      '#DFB850', // Pale Gold
+      '#C59B27', // Antique Gold
+      '#E2A76F', // Soft Rose Gold
+      '#D97706', // Warm Amber
+      '#FFF8EB', // Starlight White
     ];
 
     class Particle {
@@ -35,15 +35,15 @@ export default function FireworksCanvas({ triggerBurstRef }) {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.radius = Math.random() * 2.4 + 1.2;
+        this.radius = Math.random() * 1.8 + 0.8;
         this.speed = speed;
         this.angle = angle;
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed;
-        this.gravity = 0.055;
-        this.friction = 0.965;
-        this.alpha = 1;
-        this.decay = Math.random() * 0.016 + 0.012;
+        this.gravity = 0.045;
+        this.friction = 0.968;
+        this.alpha = 0.9;
+        this.decay = Math.random() * 0.014 + 0.010;
       }
 
       update() {
@@ -61,7 +61,7 @@ export default function FireworksCanvas({ triggerBurstRef }) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         c.fillStyle = this.color;
-        c.shadowBlur = 12;
+        c.shadowBlur = 8;
         c.shadowColor = this.color;
         c.fill();
         c.restore();
@@ -70,11 +70,11 @@ export default function FireworksCanvas({ triggerBurstRef }) {
 
     class FireworkRocket {
       constructor(targetX, targetY) {
-        this.x = targetX + (Math.random() * 60 - 30);
+        this.x = targetX + (Math.random() * 50 - 25);
         this.y = height + 10;
         this.targetX = targetX;
         this.targetY = targetY;
-        this.speed = Math.random() * 3 + 11;
+        this.speed = Math.random() * 2.5 + 10.5;
         const angle = Math.atan2(targetY - this.y, targetX - this.x);
         this.vx = Math.cos(angle) * this.speed;
         this.vy = Math.sin(angle) * this.speed;
@@ -93,9 +93,9 @@ export default function FireworksCanvas({ triggerBurstRef }) {
       draw(c) {
         c.save();
         c.beginPath();
-        c.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
-        c.fillStyle = '#FFF7D6';
-        c.shadowBlur = 14;
+        c.arc(this.x, this.y, 1.8, 0, Math.PI * 2);
+        c.fillStyle = '#FFF8E7';
+        c.shadowBlur = 9;
         c.shadowColor = this.color;
         c.fill();
         c.restore();
@@ -105,46 +105,45 @@ export default function FireworksCanvas({ triggerBurstRef }) {
     let particles = [];
     let rockets = [];
 
-    const createBurst = (x, y, count = 45, sound = false) => {
+    const createBurst = (x, y, count = 40, sound = false) => {
       const burstColor = colors[Math.floor(Math.random() * colors.length)];
       const secondaryColor = colors[Math.floor(Math.random() * colors.length)];
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 6.5 + 1.5;
-        const color = Math.random() > 0.4 ? burstColor : secondaryColor;
+        const speed = Math.random() * 5.5 + 1.2;
+        const color = Math.random() > 0.35 ? burstColor : secondaryColor;
         particles.push(new Particle(x, y, color, speed, angle));
       }
       if (sound) {
-        festiveAudio.playFireworkBurst();
+        soundManager.playFireworkBurst();
       }
     };
 
     if (triggerBurstRef) {
-      triggerBurstRef.current = (x = width / 2, y = height * 0.35, count = 70, sound = true) => {
+      triggerBurstRef.current = (x = width / 2, y = height * 0.35, count = 55, sound = true) => {
         createBurst(x, y, count, sound);
       };
     }
 
     // Interactive burst anywhere clicked on document unless clicking button/interactive item
     const handleGlobalClick = (e) => {
-      // If clicking button or link, let it handle its own interaction
       if (e.target.closest('button, a, input, [role="button"]')) {
         return;
       }
-      createBurst(e.clientX, e.clientY, 40, true);
+      createBurst(e.clientX, e.clientY, 35, true);
     };
 
     window.addEventListener('pointerdown', handleGlobalClick);
 
-    // Occasional automatic fireworks in background
+    // Subtle atmospheric bursts in background
     let lastAutoFire = Date.now();
     const loop = () => {
       ctx.clearRect(0, 0, width, height);
 
       const now = Date.now();
-      if (now - lastAutoFire > 2500 + Math.random() * 2000) {
+      if (now - lastAutoFire > 3200 + Math.random() * 2400) {
         const x = Math.random() * (width * 0.8) + width * 0.1;
-        const y = Math.random() * (height * 0.45) + height * 0.08;
+        const y = Math.random() * (height * 0.42) + height * 0.08;
         rockets.push(new FireworkRocket(x, y));
         lastAutoFire = now;
       }
@@ -155,7 +154,7 @@ export default function FireworksCanvas({ triggerBurstRef }) {
         r.update();
         r.draw(ctx);
         if (r.exploded) {
-          createBurst(r.x, r.y, 45, false);
+          createBurst(r.x, r.y, 36, false);
           rockets.splice(i, 1);
         }
       }

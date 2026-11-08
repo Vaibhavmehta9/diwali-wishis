@@ -10,58 +10,60 @@
   html, body {
     width: 100%;
     min-height: 100%;
-    background-color: #050408;
-    color: #fce7b0;
+    background-color: #040307;
+    color: #e6dfd3;
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom festive styles & animations */
-@keyframes float {
+/* Subtle, refined keyframe animations */
+@keyframes floatGentle {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-7px) rotate(0.8deg);
   }
 }
 
-@keyframes flicker {
+@keyframes diyaFlame {
   0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 16px rgba(255, 170, 0, 0.95)) drop-shadow(0 0 35px rgba(255, 110, 0, 0.7));
-    transform: scale(1);
+    transform: scale(1) skewX(0deg);
+    filter: drop-shadow(0 0 10px rgba(230, 165, 60, 0.65)) drop-shadow(0 0 22px rgba(200, 120, 30, 0.35));
+    opacity: 0.98;
   }
   25% {
-    opacity: 0.88;
-    filter: drop-shadow(0 0 11px rgba(255, 150, 0, 0.8)) drop-shadow(0 0 25px rgba(255, 90, 0, 0.5));
-    transform: scale(0.97) skewX(-1deg);
+    transform: scale(0.97) skewX(-1.2deg);
+    filter: drop-shadow(0 0 8px rgba(220, 150, 50, 0.55)) drop-shadow(0 0 18px rgba(180, 100, 25, 0.3));
+    opacity: 0.92;
   }
   50% {
+    transform: scale(1.03) skewX(1deg);
+    filter: drop-shadow(0 0 12px rgba(240, 180, 70, 0.75)) drop-shadow(0 0 26px rgba(210, 130, 35, 0.4));
     opacity: 1;
-    filter: drop-shadow(0 0 20px rgba(255, 190, 0, 1)) drop-shadow(0 0 45px rgba(255, 120, 0, 0.85));
-    transform: scale(1.04) skewX(1deg);
   }
   75% {
-    opacity: 0.92;
-    filter: drop-shadow(0 0 13px rgba(255, 160, 0, 0.85)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.6));
-    transform: scale(0.98);
+    transform: scale(0.98) skewX(-0.6deg);
+    filter: drop-shadow(0 0 9px rgba(225, 160, 55, 0.6)) drop-shadow(0 0 20px rgba(190, 110, 30, 0.32));
+    opacity: 0.94;
   }
 }
 
-@keyframes twinkle {
+@keyframes softTwinkle {
   0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.85);
+    opacity: 0.25;
+    transform: scale(0.88);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.15);
+    opacity: 0.85;
+    transform: scale(1.08);
   }
 }
 
-@keyframes goldShine {
+@keyframes shimmerElegance {
   0% {
     background-position: -200% center;
   }
@@ -70,48 +72,55 @@
   }
 }
 
-@keyframes pulseGlow {
+@keyframes pulseWarmGlow {
   0%, 100% {
-    box-shadow: 0 0 25px rgba(255, 191, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.12), inset 0 0 12px rgba(212, 175, 55, 0.05);
   }
   50% {
-    box-shadow: 0 0 45px rgba(255, 170, 0, 0.8), inset 0 0 25px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.24), inset 0 0 20px rgba(212, 175, 55, 0.1);
   }
 }
 
 .animate-flicker {
-  animation: flicker 1.8s infinite ease-in-out;
+  animation: diyaFlame 2.2s infinite ease-in-out;
 }
 
 .animate-float {
-  animation: float 4s ease-in-out infinite;
+  animation: floatGentle 4.5s ease-in-out infinite;
 }
 
 .animate-twinkle {
-  animation: twinkle 2s infinite ease-in-out;
+  animation: softTwinkle 3s infinite ease-in-out;
 }
 
+/* Premium Warm Champagne & Antique Gold Typography (Soft & Elegant) */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #FFF6D1 0%, #FFD700 35%, #F59E0B 70%, #FFF4B8 100%);
+  background: linear-gradient(135deg, #FFF0D0 0%, #D4AF37 40%, #B8860B 80%, #E8D399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gold-shimmer {
-  background: linear-gradient(90deg, #F59E0B 0%, #FFFBEB 25%, #FFD700 50%, #FFFBEB 75%, #F59E0B 100%);
+  background: linear-gradient(90deg, #C59B27 0%, #FFF4D6 28%, #D4AF37 50%, #FFF4D6 72%, #C59B27 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: goldShine 6s linear infinite;
+  animation: shimmerElegance 8s linear infinite;
 }
 
-.gold-border {
-  border: 1px solid rgba(255, 215, 0, 0.35);
-  box-shadow: 0 0 20px rgba(255, 193, 7, 0.15);
+.text-gold-subtle {
+  background: linear-gradient(135deg, #F3E5C8 0%, #DFCA95 50%, #C9AC68 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.gold-glow {
-  box-shadow: 0 0 35px rgba(255, 180, 0, 0.35);
+/* Refined borders & subtle luxury glass panels */
+.glass-panel-luxury {
+  background: linear-gradient(180deg, rgba(18, 14, 24, 0.82) 0%, rgba(10, 8, 15, 0.88) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.65), 0 0 24px 0 rgba(212, 175, 55, 0.06);
 }
 
 .cinzel {

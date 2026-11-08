@@ -108,3 +108,4 @@ Once deployed, if you want your custom production domain (e.g. `https://mehta-fa
 
 In [`src/components/ShareSection.jsx`](file:///c:/Users/yashm/OneDrive/Desktop/Documents/diwali%20wishis/src/components/ShareSection.jsx):
 The `getShareUrl()` function already automatically picks up `window.location.href`, meaning **it will automatically share your live Vercel or Render URL** when someone clicks the WhatsApp share button on the live site!
+
